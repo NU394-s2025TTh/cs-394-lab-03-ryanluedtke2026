@@ -39,10 +39,9 @@ export const fetchTodos = async ({
 }: FetchTodosParams): Promise<void> => {
   try {
     setLoading(true);
-    setError(null);
 
     const res = await fetch('https://jsonplaceholder.typicode.com/todos');
-    if (!res.ok) throw new Error('failed to fetch todos');
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
     const data: Todo[] = await res.json();
     setTodos(data);
@@ -95,8 +94,8 @@ export const TodoList: React.FC<TodoListProps> = ({ onSelectTodo }) => {
   return (
     <div className="todo-list">
       <h2>Todo List</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {loading && <p>Loading todos...</p>}
+      {error && <p style={{ color: 'red' }}>Error loading todos: {error}</p>}
 
       {/* <p>
         These are the filter buttons. the tests depend on the data-testids; and use
