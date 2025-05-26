@@ -43,23 +43,23 @@ export const TodoDetail: React.FC<TodoDetailProps> = ({ todoId }) => {
   }, [todoId]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: 'red' }}>{error}</p>;
+  if (error) return <p style={{ color: 'red' }}>Error loading todo: {error}</p>;
   if (!todo) return null;
 
   return (
     <div className="todo-detail">
       <h2>Todo Details</h2>
       <p>
-        <strong>ID:</strong> {todo.id}{' '}
+        Title <span>{todo.title}</span>
       </p>
       <p>
-        <strong>Title:</strong> {todo.title}{' '}
+        ID <span>{todo.id}</span>
       </p>
       <p>
-        <strong>Completed:</strong> {todo.completed ? 'Yes' : 'No'}{' '}
+        Completed <span>{todo.completed ? 'Yes' : 'No'}</span>
       </p>
       <p>
-        <strong>User ID:</strong> {todo.userId}{' '}
+        User ID <span>{todo.userId}</span>
       </p>
     </div>
   );
